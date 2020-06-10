@@ -16,17 +16,19 @@ TransactionController contient les US suivantes:
 
 
 ## Notes
-J'ai ajouté quelques fonctionnalmités standard comme getAll() etc...
-J'ai injecté quelques données des qu'on lance l'appli vous pouvez le trouvez dans le fichier Src/main/ressources/script.sql.
-Si vous ne voulez pas injeter des donnés lors de lancemenr de l'appli merci de commenter cette ligne dans application.proprieties
+> J'ai ajouté quelques fonctionnalmités standard comme getAll() etc
+
+> J'ai injecté quelques données des qu'on lance l'appli vous pouvez le trouvez dans le fichier Src/main/ressources/script.sql.
+
+> Si vous ne voulez pas injeter des donnés lors de lancemenr de l'appli merci de commenter cette ligne dans application.proprieties:  
      spring.datasource.data=classpath:script.sql
-J'ai utilisé une Base de donnés H2.
-J'ai implémenter le modéle et les differentes relations entre les tables.
+     
+> J'ai utilisé une Base de donnés H2.
+
+>  J'ai implémenter le modéle et les differentes relations entre les tables.
 
 
 
-* Une branche qui a pour nom, votre `trigramme` reçu par mail, qui contiendra votre code source final.
-* Un fichier `readme.md` qui explique les possibles subtilités de votre implémentation et comment lancer votre projet.
 
 
 
