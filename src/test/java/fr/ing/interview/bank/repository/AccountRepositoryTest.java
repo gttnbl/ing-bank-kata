@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import fr.ing.interview.bank.model.Account;
-import fr.ing.interview.bank.model.Customer;
 import fr.ing.interview.bank.repository.AccountRepository;
 
 @RunWith(SpringRunner.class)
