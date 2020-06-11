@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.ing.interview.bank.dto.AccountDepot;
+import fr.ing.interview.bank.exceptions.AccountNotFoundException;
 import fr.ing.interview.bank.model.Account;
 import fr.ing.interview.bank.service.AccountService;
 
@@ -20,8 +21,8 @@ public class BankController {
 	AccountService accountService;
 
 	@RequestMapping(value = "/ajouterArgent", method = RequestMethod.POST)
-	public Account ajouterArgent(@RequestBody AccountDepot accountDepot) {
-		return accountService.ajouterArgent(accountDepot);
+	public void ajouterArgent(@RequestBody AccountDepot accountDepot) throws AccountNotFoundException {
+		 accountService.ajouterArgent(accountDepot);
 	}
 
 }

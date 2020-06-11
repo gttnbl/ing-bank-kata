@@ -2,6 +2,8 @@ package fr.ing.interview.bank.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +33,10 @@ public class AccountRepositoryTest {
 		entityManager.flush();
 
 		// when
-		Account found = accountRepository.findByNum(account.getNum());
+		Optional<Account> found = accountRepository.findByNum(account.getNum());
 
 		// then
-		assertThat(found.getNum()).isEqualTo(account.getNum());
+		assertThat(found.get().getNum()).isEqualTo(account.getNum());
 	}
 
 }

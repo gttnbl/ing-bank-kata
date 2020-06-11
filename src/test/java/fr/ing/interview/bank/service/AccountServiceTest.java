@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +18,7 @@ import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import fr.ing.interview.bank.dto.AccountDepot;
+import fr.ing.interview.bank.exceptions.AccountNotFoundException;
 import fr.ing.interview.bank.model.Account;
 import fr.ing.interview.bank.repository.AccountRepository;
 
@@ -31,6 +33,7 @@ public class AccountServiceTest {
 	AccountRepository accountDAO;
 
 	Account acc;
+	Optional<Account> acctOpt;
 	AccountDepot accDep;
 	List<Account> result;
 
@@ -47,29 +50,31 @@ public class AccountServiceTest {
 		result = new ArrayList<>();
 		result.add(acc);
 
+		acctOpt = Optional.of(acc);
+
 	}
 
 	@Test
-	public void testAjouterArgent() {
+	public void testAjouterArgent() throws AccountNotFoundException {
 
-		Mockito.when(accountDAO.findByNum(Mockito.anyString())).thenReturn(acc);
+		Mockito.when(accountDAO.findByNum(Mockito.anyString())).thenReturn(acctOpt);
 		Mockito.when(accountDAO.saveAndFlush(acc)).thenReturn(acc);
-		Account account=accountService.ajouterArgent(accDep);
-		assertThat(10000D == account.getBalance());
+		String abc = accountService.ajouterArgent(accDep);
+		assertThat(10000D == accDep.getSomme());
 	}
 
 	@Test
-	public void testRetirerArgent() {
+	public void testRetirerArgent() throws AccountNotFoundException {
 
-		Mockito.when(accountDAO.findByNum(Mockito.anyString())).thenReturn(acc);
+		Mockito.when(accountDAO.findByNum(Mockito.anyString())).thenReturn(acctOpt);
 		Mockito.when(accountDAO.saveAndFlush(acc)).thenReturn(acc);
-		Account account= accountService.retirerArgent(accDep);
-		assertThat(10000D == account.getBalance());
+		String abc = accountService.retirerArgent(accDep);
+		assertThat(10000D == accDep.getSomme());
 	}
 
 	@Test
-	public void testGetBalance() {
-		Mockito.when(accountDAO.findByNum(Mockito.anyString())).thenReturn(acc);
+	public void testGetBalance() throws AccountNotFoundException {
+		Mockito.when(accountDAO.findByNum(Mockito.anyString())).thenReturn(acctOpt);
 		double balance = accountService.getBalance("FR77777");
 		assertThat(balance == 9000D);
 
